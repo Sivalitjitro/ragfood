@@ -144,3 +144,4 @@ Made by Callum using:
 * [mxbai-embed-large](https://ollama.com/library/mxbai-embed-large)
 * Indian food inspiration 🍛
 
+I have successfully implemented a Retrieval-Augmented Generation (RAG) system using ChromaDB and LangChain. The system processes a dataset of 15 diverse food items, allowing for intelligent querying based on cultural significance, nutritional value, and ingredients. This project demonstrates how localized data can enhance LLM accuracy.
