@@ -144,4 +144,12 @@ Made by Callum using:
 * [mxbai-embed-large](https://ollama.com/library/mxbai-embed-large)
 * Indian food inspiration 🍛
 
-I have successfully implemented a Retrieval-Augmented Generation (RAG) system using ChromaDB and LangChain. The system processes a dataset of 15 diverse food items, allowing for intelligent querying based on cultural significance, nutritional value, and ingredients. This project demonstrates how localized data can enhance LLM accuracy.
+Technical Implementation
+This system uses a special way to search for meaning, called Vector Embeddings, to look through a list of 15 foods from around the world. It's different from the usual way of searching, where you have to use exact words to find what you're looking for. Instead, this system turns text into complex codes, called high-dimensional vectors, Which lets it find relevant information even if you don't use the exact same words. This is made possible by a technology called RAG, or Retrieval-Augmented Generation, which is used with the Llama 3.2 model to get the right results.
+
+Key Learnings
+* Vector Databases: Implemented ChromaDB to store and query embeddings efficiently.
+
+* Data Grounding: Observed how providing a specific context window significantly reduces LLM hallucinations.
+
+* Workflow: Managed the end-to-end pipeline from JSON data ingestion to real-time conversational retrieval.
