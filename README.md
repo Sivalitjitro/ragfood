@@ -144,12 +144,65 @@ Made by Callum using:
 * [mxbai-embed-large](https://ollama.com/library/mxbai-embed-large)
 * Indian food inspiration 🍛
 
-Technical Implementation
-This system uses a special way to search for meaning, called Vector Embeddings, to look through a list of 15 foods from around the world. It's different from the usual way of searching, where you have to use exact words to find what you're looking for. Instead, this system turns text into complex codes, called high-dimensional vectors, Which lets it find relevant information even if you don't use the exact same words. This is made possible by a technology called RAG, or Retrieval-Augmented Generation, which is used with the Llama 3.2 model to get the right results.
+# 🥗 Custom Food RAG System
+**A specialized Retrieval-Augmented Generation (RAG) agent for international culinary data.**
 
-Key Learnings
-* Vector Databases: Implemented ChromaDB to store and query embeddings efficiently.
+## 📌 Project Overview
+This repository contains a functional RAG system that allows users to query a custom-built dataset of 15 international food items. By integrating a local Large Language Model (LLM) with a vector database, the system provides accurate, context-aware information regarding ingredients, cultural history, and nutritional value.
 
-* Data Grounding: Observed how providing a specific context window significantly reduces LLM hallucinations.
+## 🛠️ Technical Implementation
+- **LLM:** Llama 3.2 (via Ollama)
+- **Vector Database:** ChromaDB
+- **Embedding Model:** mxbai-embed-large
+- **Data Source:** Custom `foods.json` (15 items)
 
-* Workflow: Managed the end-to-end pipeline from JSON data ingestion to real-time conversational retrieval.
+## 🧠 Core AI Concepts Demonstrated
+
+### 1. Vector Embeddings
+I have demonstrated the use of **Vector Embeddings** by transforming raw text descriptions into numerical vectors. This mathematical representation allows the system to calculate the distance between concepts, enabling the AI to understand the context of a query beyond simple keyword matching.
+
+### 2. Semantic Search
+Unlike traditional search engines, this system utilizes **Semantic Search**. When a user asks for a "spicy Malaysian meal," the system retrieves items like *Nasi Lemak* and *Sarawak Laksa* because their embeddings are semantically similar to the intent of the query, even if the user's exact words aren't in the database.
+
+
+## 🚀 How to Run
+1. Ensure **Ollama** is running with `llama3.2` and `mxbai-embed-large`.
+2. Install dependencies: `pip install chromadb langchain-community ollama`.
+3. Run the application: `python rag_run.py`.
+
+## 🌱 Reflection: AI Builder Growth Mindset
+Through this project, I evolved from an AI user to an AI builder. I successfully navigated technical challenges, such as resolving `KeyError` exceptions by aligning data schemas with script requirements. I learned that the effectiveness of an LLM is significantly enhanced when grounded in a structured, specialized vector database, which effectively prevents hallucinations.
+
+---
+
+# ☁️ Phase 2: Cloud Migration (Week 3)
+
+## 🏗️ Architecture Upgrade
+I have migrated the system from a local-only setup to a production-ready cloud infrastructure.
+- **Database:** [Upstash Vector](https://upstash.com/)
+- **LLM:** [Groq Cloud](https://groq.com/) (Model: `llama-3.1-8b-instant`)
+- **Data:** Expanded `food_data.json` to 35+ items with 75+ word comprehensive descriptions.
+
+## 📊 Local vs. Cloud Comparison
+| Feature | Local (Week 2) | Cloud (Week 3) |
+| :--- | :--- | :--- |
+| **Response Time** | ~8 seconds | **< 1 second** |
+| **Vector DB** | ChromaDB (Local) | Upstash Vector (Cloud) |
+| **LLM Provider** | Ollama (Local CPU) | Groq (Cloud API) |
+| **Setup Complexity** | High (Requires Ollama) | **Low (Serverless)** |
+
+## 🚀 Cloud Setup Instructions
+1. **Environment Variables:**
+   Ensure your `.env` file contains:
+   - `UPSTASH_VECTOR_REST_URL`
+   - `UPSTASH_VECTOR_REST_TOKEN`
+   - `GROQ_API_KEY`
+2. **Sync the Data:**
+   Run `python cloud-version/sync_data.py` to populate the cloud index.
+3. **Run the RAG System:**
+   Run `python cloud-version/rag_cloud.py` to ask questions.
+
+## 🧪 Advanced Query Examples
+- "Suggest a healthy Mediterranean dish with heart benefits."
+- "What is a spicy Asian vegetarian option?"
+- "Tell me the cultural history of Pho."
